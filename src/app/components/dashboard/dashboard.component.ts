@@ -7,12 +7,15 @@ import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
 import { BienServiceService } from 'src/app/service/bien-service';
 import { SnService } from 'src/app/service/sn.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
  
 @Component({
     templateUrl: './dashboard.component.html',
 })
+
 export class DashboardComponent implements OnInit {
 
+   
     items: MenuItem[];
 
     labels:String [];
@@ -20,6 +23,10 @@ export class DashboardComponent implements OnInit {
 
     values:number[];
     valuesSn:number[];
+
+    isAdmin:boolean;
+
+    centres :any[];
 
     chartData: any;
     chartDataSN: any;
@@ -31,9 +38,14 @@ export class DashboardComponent implements OnInit {
 
     config: AppConfig;
 
-    constructor(private snService:SnService,private bienService:BienServiceService, public configService: ConfigService) {}
+    constructor(private token:TokenStorageService,private snService:SnService,private bienService:BienServiceService, public configService: ConfigService) {
+    }
 
     ngOnInit() {
+        
+        let tab = this.token.getUser().roles;
+        this.isAdmin = tab.includes("ROLE_ADMIN");
+        
         this.labels = [];
         this.labelsSn = [];
         this.values = [];
@@ -117,6 +129,15 @@ export class DashboardComponent implements OnInit {
                 
             }
         );
+        this.bienService.stat_par_centre().subscribe(
+            data =>{
+
+                this.centres = data;
+                
+            }
+        );
+
+        
 
         this.config = this.configService.config;
         this.subscription = this.configService.configUpdate$.subscribe(config => {
@@ -163,4 +184,7 @@ export class DashboardComponent implements OnInit {
                 }
         };
     }
+
+
 }
+

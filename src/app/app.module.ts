@@ -146,6 +146,9 @@ import { EquipeListComponent } from './components/equipe-list/equipe-list.compon
 import { LocaliteListComponent } from './components/localite-list/localite-list.component';
 import { DechargesnListeComponent } from './components/dechargesn-liste/dechargesn-liste.component';
 import { DechargebienListComponent } from './components/dechargebien-list/dechargebien-list.component';
+import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { ChoixCentreComponent } from './components/choix-centre/choix-centre.component';
+import { PasswordComponent } from './components/password/password.component';
 
 @NgModule({
     imports: [
@@ -285,9 +288,12 @@ import { DechargebienListComponent } from './components/dechargebien-list/dechar
         LocaliteListComponent,
         DechargesnListeComponent,
         DechargebienListComponent,
+        ChoixCentreComponent,
+        PasswordComponent,
     ],
     providers: [
         {provide: LocationStrategy, useClass: HashLocationStrategy},
+        authInterceptorProviders,
         CountryService, CustomerService, EventService, IconService, NodeService,
         PhotoService, ProductService, MenuService, ConfigService,BienListComponent
     ],

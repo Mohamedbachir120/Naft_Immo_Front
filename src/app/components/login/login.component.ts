@@ -2,6 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ConfigService } from '../../service/app.config.service';
 import { AppConfig } from '../../api/appconfig';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/_services/auth.service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -26,6 +29,10 @@ import { Subscription } from 'rxjs';
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
+  form: any = {
+    username: null,
+    password: null
+  };
   valCheck: string[] = ['remember'];
 
   password: string;
@@ -33,14 +40,54 @@ export class LoginComponent implements OnInit, OnDestroy {
   config: AppConfig;
   
   subscription: Subscription;
+  isLoggedIn = false;
+  isLoginFailed = false;
+  errorMessage = '';
+  roles: string[] = [];
 
-  constructor(public configService: ConfigService){ }
+
+  constructor(private token:TokenStorageService, private router: Router,public configService: ConfigService,private authService: AuthService, private tokenStorage: TokenStorageService){ }
 
   ngOnInit(): void {
+  
+  
     this.config = this.configService.config;
     this.subscription = this.configService.configUpdate$.subscribe(config => {
       this.config = config;
     });
+  }
+
+  onSubmit(): void {
+    const { username, password } = this.form;
+
+    this.authService.login(username, password).subscribe(
+      data => {
+        this.tokenStorage.saveToken(data.accessToken);
+        this.tokenStorage.saveUser(data);
+
+        this.isLoginFailed = false;
+        this.isLoggedIn = true;
+        this.roles = this.tokenStorage.getUser().roles;
+        this.reloadPage();
+
+      },
+      err => {
+        this.errorMessage = err.error.message;
+        this.isLoginFailed = true;
+      }
+    );
+  }
+
+  reloadPage(): void {
+    let tab = this.token.getUser().roles;
+
+    if(tab.includes("ROLE_ADMIN")){
+
+      window.location.href="/#/";
+    }else{
+      
+      window.location.href ="/#/ChoixCentre";
+    }
   }
 
   ngOnDestroy(): void {

@@ -5,6 +5,7 @@ import { ConfigService } from './service/app.config.service';
 import { AppConfig } from './api/appconfig';
 import { Subscription } from 'rxjs';
 import { BienListComponent } from './components/bien-list/bien-list.component';
+import { TokenStorageService } from './_services/token-storage.service';
 
 @Component({
     selector: 'app-main',
@@ -29,6 +30,7 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
     public menuActiveMobile: boolean;
 
     public overlayMenuActive: boolean;
+    // isLoggedIn = false;
 
     public staticMenuInactive: boolean = false;
 
@@ -54,9 +56,11 @@ export class AppMainComponent implements AfterViewInit, OnDestroy, OnInit {
 
     subscription: Subscription;
     
-    constructor(public renderer: Renderer2, public app: AppComponent, public configService: ConfigService) { }
+    constructor(private token:TokenStorageService,public renderer: Renderer2, public app: AppComponent, public configService: ConfigService) { }
 
     ngOnInit() {
+        // this.isLoggedIn = this.token.isAuthenticated();
+
         this.config = this.configService.config;
         this.subscription = this.configService.configUpdate$.subscribe(config => this.config = config);
     }

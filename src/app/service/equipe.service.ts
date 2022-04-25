@@ -2,24 +2,39 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Equipe } from '../models/equipe';
+import { TokenStorageService } from '../_services/token-storage.service';
+
+const SELECTED_CENTER = "selected-center"
 
 @Injectable({
   providedIn: 'root'
 })
 export class EquipeService {
   private usersUrl!: string;
+  private urlParCentre!:string;
 
 
 
 
- constructor(private http: HttpClient) {
+ constructor(private http: HttpClient,private token:TokenStorageService) {
 
-    this.usersUrl = 'http://192.168.0.127:8080/equipe';
-
+    this.usersUrl = 'http://localhost:8080/equipe';
+    this.urlParCentre ='http://localhost:8080/equipe_par_centre'
   }
 
   public findAll(): Observable<Equipe[]> {
-    return this.http.get<Equipe[]>(this.usersUrl);
+    let tab = this.token.getUser().roles;
+    if(tab.includes("ROLE_ADMIN")){
+
+
+      return this.http.get<Equipe[]>(this.usersUrl);
+    } else{
+
+      let  centre = window.sessionStorage.getItem(SELECTED_CENTER);
+
+      return this.http.get<Equipe[]>(this.urlParCentre+"/"+centre.trim());
+
+    }
   }
 
 }

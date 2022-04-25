@@ -1,3 +1,4 @@
+<!-- *ngIf="isLoggedIn" -->
 <div class="layout-wrapper" [ngClass]="{'layout-overlay':isOverlay(),
                                 'layout-static':isStatic(),
                                 'layout-theme-light':!config.dark,
@@ -11,7 +12,7 @@
         <app-menu></app-menu>
     </div>
     <div class="layout-main-container">
-        <div class="layout-main">
+        <div class="layout-main" >
             <router-outlet></router-outlet>
          
 

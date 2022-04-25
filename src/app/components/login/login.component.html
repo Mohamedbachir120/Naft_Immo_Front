@@ -1,4 +1,4 @@
-<div class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
+<div *ngIf="!isLoggedIn" class="surface-0 flex align-items-center justify-content-center min-h-screen min-w-screen overflow-hidden">
     <div class="grid justify-content-center p-2 lg:p-0" style="min-width:80%">
         <div class="col-12 mt-5 xl:mt-0 text-center">
             <img src="assets/layout/images/logo.png" alt="Sakai logo" class="mb-5" style="width:150px; height:auto;">
@@ -9,17 +9,59 @@
                     <div class="text-900 text-3xl font-medium mb-3">Naft , Immo</div>
                     <span class="text-600 font-medium">Connectez vous pour continuer</span>
                 </div>
+
+                
             
-                <div class="w-full md:w-10 mx-auto">
-                    <label for="email1" class="block text-900 text-xl font-medium mb-2">Email</label>
-                    <input id="email1" type="text" placeholder="Email address" pInputText class="w-full mb-3" style="padding:1rem;">
-            
-                    <label for="password1" class="block text-900 font-medium text-xl mb-2">Mot de passe</label>
-                    <p-password id="password1" [(ngModel)]="password" placeholder="Mot de passe" [toggleMask]="true" styleClass="w-full mb-3"></p-password>
-            
-                   
-                    <button pButton pRipple label="Se connecter" class="w-full p-3 text-xl"></button>
+                <form
+                *ngIf="!isLoggedIn"
+                name="form"
+                (ngSubmit)="f.form.valid && onSubmit()"
+                #f="ngForm"
+                novalidate
+              >
+              <div class="w-full md:w-10 mx-auto">
+                    <label for="username" class="block text-900 text-xl font-medium mb-2">Username</label>
+                    <input
+                      type="text"
+                      name="username"
+                      [(ngModel)]="form.username"
+                      required
+                      #username="ngModel"
+                      pInputText class="w-full mb-3" style="padding:1rem;"
+                    />
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="username.errors && f.submitted"
+                    >
+                      Username is required!
+                    </div>
+                    <label for="password"  class="block text-900 font-medium text-xl mb-2">Password</label>
+                    <p-password
+                      type="password"
+                      name="password"
+                      [(ngModel)]="form.password"
+                      required
+                      minlength="6"
+                      #password="ngModel"
+                      [toggleMask]="true" styleClass="w-full mb-3"
+                    ></p-password>
+                    <div
+                      class="alert alert-danger"
+                      role="alert"
+                      *ngIf="password.errors && f.submitted"
+                    >
+                      <div *ngIf="password.errors.required">Password is required</div>
+                      <div *ngIf="password.errors.minlength">
+                        Password must be at least 6 characters
+                      </div>
+                  </div>
+                    <button pButton pRipple label="Se connecter" class="w-full p-3 text-xl">
+                      
+                    </button>
                 </div>
+               
+                  </form>
             </div>
         </div>
     </div>

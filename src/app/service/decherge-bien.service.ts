@@ -15,7 +15,7 @@ export class DechergeBienService {
 
   constructor(private http: HttpClient) {
  
-     this.usersUrl = 'http://192.168.0.127:8080/decharges_bien';
+     this.usersUrl = 'http://localhost:8080/decharges_bien';
  
    }
  

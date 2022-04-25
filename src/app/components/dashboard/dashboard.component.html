@@ -22,3 +22,31 @@
         </div>
     </div>
 </div>
+<div *ngIf="isAdmin">
+    <div class="card">
+        <h5>Nombre d'article par centre</h5>
+        <p-table [value]="centres" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" responsiveLayout="scroll"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Centre</th>
+                    <th>Nombre</th>
+                
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-centre>
+                <tr>
+                    <td>{{centre[1]}}</td>
+                    <td>{{centre[0]}}</td>
+                 
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button>
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button>
+            </ng-template>
+        </p-table>
+    </div>
+</div>

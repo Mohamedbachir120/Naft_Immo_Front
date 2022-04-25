@@ -5,6 +5,7 @@ import { Table } from 'primeng/table';
 import { MessageService, ConfirmationService } from 'primeng/api'
 import { Bien } from '../../models/bien';
 import { BienServiceService } from '../../service/bien-service';
+import { TokenStorageService } from 'src/app/_services/token-storage.service';
 
 @Component({
     selector: 'app-bien-list',
@@ -52,9 +53,14 @@ export class BienListComponent implements OnInit {
 
     @ViewChild('filter') filter: ElementRef;
 
-    constructor(private bienService:BienServiceService) {}
+    constructor(private bienService:BienServiceService,private token:TokenStorageService) {
 
-    ngOnInit() {
+       
+
+    }
+
+    ngOnInit() {    
+    
       
          this.bienService.findAll().subscribe(data => {
             this.biens = data;

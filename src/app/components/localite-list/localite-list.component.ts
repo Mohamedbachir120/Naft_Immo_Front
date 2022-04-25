@@ -59,7 +59,6 @@ export class LocaliteListComponent implements OnInit {
       
          this.localiteService.findAll().subscribe(data => {
             this.localites = data;
-            console.log(this.localites);
             
             
             this.loading = !this.loading;

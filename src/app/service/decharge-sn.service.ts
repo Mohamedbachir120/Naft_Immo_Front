@@ -16,7 +16,7 @@ export class DechargeSnService {
 
   constructor(private http: HttpClient) {
  
-     this.usersUrl = 'http://192.168.0.127:8080/decharges_sn';
+     this.usersUrl = 'http://localhost:8080/decharges_sn';
  
    }
  
