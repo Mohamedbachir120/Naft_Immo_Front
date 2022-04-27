@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/_services/auth.service';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -25,7 +26,9 @@ import { Router } from '@angular/router';
       margin-right: 1rem;
       color: var(--primary-color) !important;
     }
-  `]
+  `],
+  providers: [MessageService]
+
 })
 export class LoginComponent implements OnInit, OnDestroy {
 
@@ -46,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   roles: string[] = [];
 
 
-  constructor(private token:TokenStorageService, private router: Router,public configService: ConfigService,private authService: AuthService, private tokenStorage: TokenStorageService){ }
+  constructor(private messageService:MessageService,private token:TokenStorageService, private router: Router,public configService: ConfigService,private authService: AuthService, private tokenStorage: TokenStorageService){ }
 
   ngOnInit(): void {
   
@@ -74,6 +77,10 @@ export class LoginComponent implements OnInit, OnDestroy {
       err => {
         this.errorMessage = err.error.message;
         this.isLoginFailed = true;
+        this.messageService.add({severity:'error', summary:'Erreur', detail:'Nom ou mot de passe incorrecte'});
+
+
+
       }
     );
   }

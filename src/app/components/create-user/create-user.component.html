@@ -1,0 +1,112 @@
+<div class="card">
+    <h2>L'ajout d'un utilisateur</h2>
+    <form (ngSubmit)="onSubmit()" style="max-width: fit-content">
+        <div class="my-2">
+            <label for="nom">Nom</label>
+        </div>
+        <input
+            type="text"
+            name="username"
+            [(ngModel)]="form.username"
+            required
+            #username="ngModel"
+            pInputText
+            class="w-full mb-3"
+            style="padding: 1rem"
+        />
+        <div class="my-2">
+            <label for="centre"> Centre d'opération </label>
+        </div>
+        <select
+            required
+            [(ngModel)]="form.access"
+            name="access"
+            id="access"
+            multiple
+            style="padding: 10px; background-color: white"
+        >
+        <option *ngFor="let centre of centres; let i = index" value="{{centre[0]}}">{{centre[0]}} -  {{centre[1]}}</option>
+    </select>
+        <div class="my-2">
+            <button
+            style="background: dodgerblue;"
+                pButton
+                pRipple
+                label="Enregistrer"
+                class="w-full p-3 text-xl"
+                class="btn btn-primary"
+            >
+                
+            </button>
+        </div>
+    </form>
+    <p-toast position="bottom-right"></p-toast>
+
+</div>
+
+<div class="grid">
+	<div class="col-12">
+		<div class="card">
+			<h5>Liste des utilisateurs </h5>
+			<p-table #dt1 [value]="users" dataKey="id" [rows]="10" [loading]="loading" [rowHover]="true" styleClass="p-datatable-gridlines" [paginator]="true" [globalFilterFields]="['username','access']" responsiveLayout="scroll">
+				<ng-template pTemplate="caption">
+					<div class="flex justify-content-between flex-column sm:flex-row">
+						<button pButton label="Clear" class="p-button-outlined mb-2" icon="pi pi-filter-slash" (click)="clear(dt1)"></button>
+						<span class="p-input-icon-left mb-2">
+							<i class="pi pi-search"></i>
+							<input pInputText type="text" #filter (input)="dt1.filterGlobal($event.target.value, 'contains')" placeholder="Search Keyword" class="w-full"/>
+						</span>
+					</div>
+				</ng-template>
+				<ng-template pTemplate="header">
+					<tr>
+					
+                        <th>
+							<div class="flex justify-content-between align-items-center">
+								Nom d'utilisateur
+								<p-columnFilter type="text" field="username" display="menu" placeholder="Recherche par centre d'opération"></p-columnFilter>
+							</div>
+						</th>
+                        <th>
+							<div class="flex justify-content-between align-items-center">
+								Centre d'opération
+								<p-columnFilter type="text" field="access" display="menu" placeholder="Recherche par groupe"></p-columnFilter>
+							</div>
+						</th>
+					
+					
+				
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="body" let-user>
+					<tr >
+						<td style="min-width: 12rem;">
+                                {{user.username}}
+                        </td> 
+                         <td style="min-width: 12rem;">
+                            {{user.access}}
+                          </td>
+						
+					
+					
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="emptymessage">
+					<tr>
+						<td colspan="7">Aucun Article</td>
+					</tr>
+				</ng-template>
+				<ng-template pTemplate="loadingbody">
+					<tr>
+						<td colspan="7">Chargement en cours ...</td>
+					</tr>
+				</ng-template>
+    		</p-table>
+		</div>
+
+	</div>
+
+
+
+
+</div>

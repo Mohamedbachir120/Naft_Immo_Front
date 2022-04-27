@@ -59,11 +59,12 @@ export class EquipeListComponent implements OnInit {
       
          this.equipeService.findAll().subscribe(data => {
             this.equipes = data;
-            console.log(this.equipes);
             
-            
+
             this.loading = !this.loading;
-            
+               
+         
+
             });
    
 

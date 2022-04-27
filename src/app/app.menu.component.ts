@@ -38,6 +38,7 @@ export class AppMenuComponent implements OnInit {
                     {label: 'Articles SN',icon: 'pi pi-fw pi-book', routerLink: ['/SN']},
                     {label: "Affectation d'articles ",icon: 'pi pi-fw pi-table', routerLink: ['/decharge_bien']},
                     {label: "Affectation d'articles SN",icon: 'pi pi-fw pi-table', routerLink: ['/decharge_sn']},
+                    {label: "Ajouter un utilisateur",icon: 'pi pi-fw pi-user', routerLink: ['/create_user']},
                     {label: "Mot de passe",icon: 'pi pi-fw pi-lock', routerLink: ['/password']},
 
                 ]

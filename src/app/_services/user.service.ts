@@ -25,4 +25,8 @@ export class UserService {
   getAdminBoard(): Observable<any> {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
+  public findCentres(): Observable<any[]> {
+    return this.http.get<any[]>('http://localhost:8080/find_centres');
+  }
+
 }
