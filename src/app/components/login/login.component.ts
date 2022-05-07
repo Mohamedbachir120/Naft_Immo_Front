@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   roles: string[] = [];
 
 
-  constructor(private messageService:MessageService,private token:TokenStorageService, private router: Router,public configService: ConfigService,private authService: AuthService, private tokenStorage: TokenStorageService){ }
+  constructor(private _router: Router,private messageService:MessageService,private token:TokenStorageService, private router: Router,public configService: ConfigService,private authService: AuthService, private tokenStorage: TokenStorageService){ }
 
   ngOnInit(): void {
   
@@ -90,10 +90,11 @@ export class LoginComponent implements OnInit, OnDestroy {
 
     if(tab.includes("ROLE_ADMIN")){
 
-      window.location.href="/#/";
+      this._router.navigate(['']);
     }else{
       
-      window.location.href ="/#/ChoixCentre";
+      this._router.navigate(['ChoixCentre']);
+
     }
   }
 

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const AUTH_API = 'http://localhost:8080/api/auth/';
+const AUTH_API = 'http://10.96.3.21:8080/naftimobackend/api/auth/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -23,7 +23,7 @@ export class AuthService {
 
   change_password(password :string,newpassword:string):Observable<any>{
     
-    return this.http.post("http://localhost:8080/change_password",
+    return this.http.post("http://10.96.3.21:8080/naftimobackend/change_password",
     {
       password,
       newpassword

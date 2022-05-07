@@ -16,7 +16,7 @@ export class DechargeSnService {
 
   constructor(private http: HttpClient) {
  
-     this.usersUrl = 'http://localhost:8080/decharges_sn';
+     this.usersUrl = 'http://10.96.3.21:8080/naftimobackend/decharges_sn';
  
    }
  

@@ -19,8 +19,8 @@ export class LocaliteService {
 
   constructor(private http: HttpClient,private token:TokenStorageService) {
  
-     this.usersUrl = 'http://localhost:8080/localite';
-      this.localite_par_centre ="http://localhost:8080/localite_par_centre";
+     this.usersUrl = 'http://10.96.3.21:8080/naftimobackend/localite';
+      this.localite_par_centre ="http://10.96.3.21:8080/naftimobackend/localite_par_centre";
    }
  
    public findAll(): Observable<Localite[]> {

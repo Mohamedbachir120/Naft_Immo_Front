@@ -22,10 +22,10 @@ export class SnService {
 
  constructor(private http: HttpClient,private token: TokenStorageService ) {
 
-    this.usersUrl = 'http://localhost:8080/all_non_etiqu';
-    this.sn_par_centre = 'http://localhost:8080/non_etiqu_by_centre'
-    this.statUrl = 'http://localhost:8080/stat_SN';
-    this.stat_sn_par_centre = 'http://localhost:8080/stat_sn_par_centre'
+    this.usersUrl = 'http://10.96.3.21:8080/naftimobackend/all_non_etiqu';
+    this.sn_par_centre = 'http://10.96.3.21:8080/naftimobackend/non_etiqu_by_centre'
+    this.statUrl = 'http://10.96.3.21:8080/naftimobackend/stat_SN';
+    this.stat_sn_par_centre = 'http://10.96.3.21:8080/naftimobackend/stat_sn_par_centre'
     
 
   }

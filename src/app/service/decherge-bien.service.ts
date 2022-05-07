@@ -15,7 +15,7 @@ export class DechergeBienService {
 
   constructor(private http: HttpClient) {
  
-     this.usersUrl = 'http://localhost:8080/decharges_bien';
+     this.usersUrl = 'http://10.96.3.21:8080/naftimobackend/decharges_bien';
  
    }
  

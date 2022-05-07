@@ -23,11 +23,11 @@ export class BienServiceService {
 
  constructor(private http: HttpClient,private token:TokenStorageService) {
 
-    this.usersUrl = 'http://localhost:8080/all_bien';
-    this.bien_par_centre ='http://localhost:8080/bien_par_centre';
-    this.statUrl = 'http://localhost:8080/stat_bien';
-    this.statParCentreUrl = "http://localhost:8080/stat_par_structure"
-    this.stat_bien_par_centre ="http://localhost:8080/stat_bien_par_centre"
+    this.usersUrl = 'http://10.96.3.21:8080/naftimobackend/all_bien';
+    this.bien_par_centre ='http://10.96.3.21:8080/naftimobackend/bien_par_centre';
+    this.statUrl = 'http://10.96.3.21:8080/naftimobackend/stat_bien';
+    this.statParCentreUrl = "http://10.96.3.21:8080/naftimobackend/stat_par_structure"
+    this.stat_bien_par_centre ="http://10.96.3.21:8080/naftimobackend/stat_bien_par_centre"
 
   }
 

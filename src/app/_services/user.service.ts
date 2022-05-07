@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-const API_URL = 'http://localhost:8080/api/test/';
+const API_URL = 'http://10.96.3.21:8080/naftimobackend/api/test/';
 
 @Injectable({
   providedIn: 'root'
@@ -26,7 +26,7 @@ export class UserService {
     return this.http.get(API_URL + 'admin', { responseType: 'text' });
   }
   public findCentres(): Observable<any[]> {
-    return this.http.get<any[]>('http://localhost:8080/find_centres');
+    return this.http.get<any[]>('http://10.96.3.21:8080/naftimobackend/find_centres');
   }
 
 }

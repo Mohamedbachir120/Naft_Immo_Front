@@ -18,8 +18,8 @@ export class EquipeService {
 
  constructor(private http: HttpClient,private token:TokenStorageService) {
 
-    this.usersUrl = 'http://localhost:8080/equipe';
-    this.urlParCentre ='http://localhost:8080/equipe_par_centre'
+    this.usersUrl = 'http://10.96.3.21:8080/naftimobackend/equipe';
+    this.urlParCentre ='http://10.96.3.21:8080/naftimobackend/equipe_par_centre'
   }
 
   public findAll(): Observable<Equipe[]> {

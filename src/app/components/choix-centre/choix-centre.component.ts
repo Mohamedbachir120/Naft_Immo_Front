@@ -1,4 +1,6 @@
+import { ThrowStmt } from '@angular/compiler';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { SelectItem } from 'primeng/api/selectitem';
 import { TokenStorageService } from 'src/app/_services/token-storage.service';
 const SELECTED_CENTER = "selected-center"
@@ -54,7 +56,7 @@ export class ChoixCentreComponent implements OnInit {
   centres: string[];
   centre :string ;
 
-  constructor(private token:TokenStorageService) { }
+  constructor(private _router:Router,private token:TokenStorageService) { }
 
   form: any = {
     centre: null,
@@ -77,7 +79,10 @@ export class ChoixCentreComponent implements OnInit {
   }
 
   reloadPage(): void {
-    window.location.href ="/#/";
+
+	this._router.navigate(['']);
+
+	
   }
 
 

@@ -3,6 +3,7 @@ import { AppMainComponent } from './app.main.component';
 import { Subscription } from 'rxjs';
 import { MenuItem } from 'primeng/api';
 import { TokenStorageService } from './_services/token-storage.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-topbar',
@@ -12,11 +13,11 @@ export class AppTopBarComponent {
 
     items: MenuItem[];
 
-    constructor(public appMain: AppMainComponent,private token:TokenStorageService) {
+    constructor(private _router:Router,public appMain: AppMainComponent,private token:TokenStorageService) {
        
      }
      sign_out(){
         this.token.signOut();
-        window.location.href="/#/login";
-     }
+        this._router.navigate(['login']);
+    }
 }
